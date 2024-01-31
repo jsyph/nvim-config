@@ -1,6 +1,6 @@
-require("ibl").setup {
-    exclude = {
-      filetypes = {"dashboard"},
-      buftypes = {"terminal"},
-    }
-}
+require("ibl").setup({
+	exclude = {
+		filetypes = { "dashboard" },
+		buftypes = { "terminal" },
+	},
+})

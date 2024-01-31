@@ -17,6 +17,14 @@ set showbreak=↪
 
 " Use mouse to select and resize windows, etc.
 set mouse=a  " Enable mouse in several mode
+set mousemodel=popup
+
+" PopUp menu settings
+aunmenu PopUp.-1-
+aunmenu PopUp.How-to\ disable\ mouse 
+
+nnoremenu PopUp.Neoformat   Neoformat<CR>
+
 
 " Disable showing current mode on command line since statusline plugins can show it.
 set noshowmode
@@ -57,7 +65,7 @@ set scrolloff=3
 " Insert mode key word completion setting
 set complete+=kspell complete-=w complete-=b complete-=u complete-=t
 
-set spelllang=en,cjk  " Spell languages
+set spelllang=en  " Spell languages
 set spellsuggest+=9  " show 9 spell suggestions at most
 
 set synmaxcol=250  " Text after this column number is not highlighted
