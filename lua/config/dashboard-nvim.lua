@@ -20,18 +20,18 @@ config.header = {
 
 config.shortcut = {
 	{
+		icon = " ",
+		desc = "Projects",
+		key = "P",
+		action = "Telescope projects",
+	},
+	{
 		icon = " ",
-		desc = "Open Config Directory",
+		desc = "Config Directory",
 		key = "C",
 		action = function()
 			vim.cmd("e " .. vim.fn.stdpath("config"))
 		end,
-	},
-	{
-		icon = "󰚰 ",
-		desc = "Update",
-		key = "U",
-		action = "Lazy update",
 	},
 }
 

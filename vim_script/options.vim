@@ -1,7 +1,7 @@
 " General tab settings
-set tabstop=4       " number of visual spaces per TAB
-set softtabstop=4   " number of spaces in tab when editing
-set shiftwidth=4    " number of spaces to use for autoindent
+set tabstop=2       " number of visual spaces per TAB
+set softtabstop=2   " number of spaces in tab when editing
+set shiftwidth=2    " number of spaces to use for autoindent
 set expandtab       " expand tab to spaces so that tabs are spaces
 
 " Set matching pairs of characters and highlight matching brackets
@@ -23,8 +23,8 @@ set mousemodel=popup
 aunmenu PopUp.-1-
 aunmenu PopUp.How-to\ disable\ mouse 
 
-nnoremenu PopUp.Neoformat   Neoformat<CR>
-
+nnoremenu PopUp.Neoformat :Neoformat<CR>
+inoremenu PopUp.Select\ All <C-Home><C-O>VG
 
 " Disable showing current mode on command line since statusline plugins can show it.
 set noshowmode

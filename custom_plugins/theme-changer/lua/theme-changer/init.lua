@@ -16,27 +16,10 @@ function M.setup(config)
 	utils.notify_verbose("Default theme is [" .. config.default_theme .. "]")
 
 	storage.init(config.default_theme)
-
-	vim.api.nvim_create_autocmd({ "VimEnter" }, {
-		pattern = { "*" },
-		callback = function()
-			M.restore_theme()
-		end,
-	})
 end
 
 function M.current_theme()
 	utils.notify_success(storage.retrieve_theme())
-end
-
-function M.restore_theme()
-	local theme = storage.retrieve_theme()
-	utils.notify_success("Restoring theme " .. tostring(theme))
-	if theme == nil then
-		utils.notify_error("Unable to retrieve theme from storage.")
-		return
-	end
-	utils.set_colorscheme(theme)
 end
 
 function M.change_theme()

@@ -1,6 +1,3 @@
-vim.opt.termguicolors = true
-vim.opt.mousemoveevent = true
-
 local bufferline = require("bufferline")
 
 bufferline.setup({

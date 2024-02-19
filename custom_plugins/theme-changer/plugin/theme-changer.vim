@@ -10,4 +10,3 @@ let g:loaded_theme_changer = 1
 " Exposes the plugin's functions for use as commands in Neovim.
 command! -nargs=0 ChangeTheme lua require("theme-changer").change_theme()
 command! -nargs=0 CurrentTheme lua require("theme-changer").current_theme()
-command! -nargs=0 RestoreCurrentTheme lua require("theme-changer").restore_theme()

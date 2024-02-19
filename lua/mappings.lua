@@ -10,3 +10,6 @@ keymap.set({ "n" }, "<Leader><S-Tab>", ":bprev<CR>")
 
 keymap.set({ "v" }, "<A-Down>", ":m '>+1<CR>gv=gv")
 keymap.set({ "v" }, "<A-Up>", ":m '<-2<CR>gv=gv")
+
+keymap.set({"n"}, "<C-Up>", "{")
+keymap.set({"n"}, "<C-Down>", "}")

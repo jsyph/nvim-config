@@ -12,7 +12,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugin_specs = {
-	"nvim-lua/plenary.nvim", -- autocomplete engine
+	---------------------------------------------------------------------------
+	"nvim-lua/plenary.nvim",
+
+	---------------------------------------------------------------------------
+	-- autocomplete engine
 	{
 		"hrsh7th/nvim-cmp",
 		event = { "InsertEnter", "CmdlineEnter" },
@@ -34,12 +38,14 @@ local plugin_specs = {
 		end,
 	},
 
+	---------------------------------------------------------------------------
 	-- mason
 	{
 		"williamboman/mason.nvim",
 		opts = {},
 	},
 
+	---------------------------------------------------------------------------
 	{
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
@@ -55,7 +61,17 @@ local plugin_specs = {
 			require("config.lsp")
 		end,
 	},
+	---------------------------------------------------------------------------
+	{
+		"jay-babu/mason-nvim-dap.nvim",
+		opts = {},
+	},
+	-- Debuger
+	{
+		"mfussenegger/nvim-dap",
+	},
 
+	---------------------------------------------------------------------------
 	-- Snippets engine
 	{
 		"L3MON4D3/LuaSnip",
@@ -66,6 +82,7 @@ local plugin_specs = {
 		end,
 	},
 
+	---------------------------------------------------------------------------
 	-- linter
 	{
 		"mfussenegger/nvim-lint",
@@ -74,6 +91,15 @@ local plugin_specs = {
 		end,
 	},
 
+	---------------------------------------------------------------------------
+	-- hover preview window
+	{
+		dir = vim.fn.stdpath("config") .. "/custom_plugins/hover.nvim",
+		config = function()
+			require("config.hover")
+		end,
+	},
+	---------------------------------------------------------------------------
 	-- tree sitter
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -84,9 +110,11 @@ local plugin_specs = {
 		end,
 	},
 
+	---------------------------------------------------------------------------
 	-- Auto brackets and pairs
 	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
 
+	---------------------------------------------------------------------------
 	-- Search and find
 	{
 		"nvim-telescope/telescope.nvim",
@@ -94,9 +122,11 @@ local plugin_specs = {
 		dependencies = { "nvim-telescope/telescope-symbols.nvim" },
 	},
 
+	---------------------------------------------------------------------------
 	-- Comment plugin
 	{ "numToStr/Comment.nvim", event = "VeryLazy", opts = {} },
 
+	---------------------------------------------------------------------------
 	-- nice file tree explorer thingy
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -107,6 +137,7 @@ local plugin_specs = {
 		end,
 	},
 
+	---------------------------------------------------------------------------
 	-- notification plugin
 	{
 		"rcarriga/nvim-notify",
@@ -116,24 +147,45 @@ local plugin_specs = {
 		end,
 	},
 
+	---------------------------------------------------------------------------
 	-- colorschemes
-	{ "folke/tokyonight.nvim" },
-	{ "catppuccin/nvim", name = "catppuccin" },
+	{ "folke/tokyonight.nvim", lazy = true },
+	{ "catppuccin/nvim", name = "catppuccin", lazy = true },
 
+	---------------------------------------------------------------------------
 	-- beter ui for some actions
 	{ "stevearc/dressing.nvim", opts = {} },
 
+	---------------------------------------------------------------------------
 	-- awseome unix commands
 	{ "tpope/vim-eunuch", cmd = { "Rename", "Delete", "SudoWrite", "SudoEdit" } },
 
+	---------------------------------------------------------------------------
 	-- Auto format tools
 	{
-		"sbdchd/neoformat",
-		cmd = { "Neoformat" },
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+		keys = {
+			{
+				"<leader>f",
+				function()
+					require("conform").format({ async = true, lsp_fallback = true })
+				end,
+				mode = "",
+				desc = "Format buffer",
+			},
+		},
 		config = function()
-			require("config.neoformat")
+			require("config.formatter")
 		end,
 	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {},
+	},
+	---------------------------------------------------------------------------
 
 	-- sexy buffer bar
 	{
@@ -150,17 +202,20 @@ local plugin_specs = {
 		config = function()
 			require("config.statusline")
 		end,
-	}, -- Highlight URLs inside vim
+	},
 
-	{ "itchyny/vim-highlighturl", event = "VeryLazy" }, -- fancy start screen
+	{ "itchyny/vim-highlighturl", event = "VeryLazy" },
 
 	{
 		"nvimdev/dashboard-nvim",
 		config = function()
 			require("config.dashboard-nvim")
 		end,
-	}, -- cute indentations
+	},
 
+	-- handsome scrollbar
+	{ "dstein64/nvim-scrollview" },
+	---------------------------------------------------------------------------
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
@@ -169,9 +224,7 @@ local plugin_specs = {
 		end,
 	},
 
-	-- handsome scrollbar
-	{ "dstein64/nvim-scrollview" },
-
+	---------------------------------------------------------------------------
 	-- clipboard history and stuff
 	{
 		"gbprod/yanky.nvim",
@@ -181,6 +234,7 @@ local plugin_specs = {
 		end,
 	}, -- preview markdown in browser
 
+	---------------------------------------------------------------------------
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = {
@@ -192,15 +246,17 @@ local plugin_specs = {
 		build = function()
 			vim.fn["mkdp#util#install"]()
 		end,
-	}, -- toml support
-
+	},
+	---------------------------------------------------------------------------
 	{ "cespare/vim-toml", ft = { "toml" }, branch = "main" }, -- showing keybindings
 
+	---------------------------------------------------------------------------
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 	},
 
+	---------------------------------------------------------------------------
 	{
 		"tiagovla/scope.nvim",
 		config = function()
@@ -208,8 +264,10 @@ local plugin_specs = {
 		end,
 	},
 
+	---------------------------------------------------------------------------
 	{
 		dir = vim.fn.stdpath("config") .. "/custom_plugins/theme-changer",
+		cmd = { "ChangeTheme", "CurrentTheme" },
 		config = function()
 			require("theme-changer").setup({
 				default_theme = "tokyonight-night",
@@ -218,6 +276,13 @@ local plugin_specs = {
 		dependencies = {
 			"MunifTanjim/nui.nvim", -- UI plugin
 		},
+	},
+	---------------------------------------------------------------------------
+	{
+		"ahmedkhalf/project.nvim",
+		config = function()
+			require("config.project")
+		end,
 	},
 }
 

@@ -5,6 +5,9 @@ local core_conf_files = {
 	"autocmd.vim",
 	"mappings.lua", -- all the user-defined mappings
 	"plugins.lua",
+    "colorschemes.lua",
+    "commands.lua",
+    "autocmd.lua"
 }
 
 local viml_conf_dir = vim.fn.stdpath("config") .. "/vim_script"
