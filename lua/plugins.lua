@@ -232,20 +232,53 @@ local plugin_specs = {
 		config = function()
 			require("config.yanky")
 		end,
-	}, -- preview markdown in browser
-
+	},
 	---------------------------------------------------------------------------
 	{
+		"jghauser/follow-md-links.nvim",
+		ft = "markdown",
+	},
+	{
 		"iamcco/markdown-preview.nvim",
-		cmd = {
-			"MarkdownPreviewToggle",
-			"MarkdownPreview",
-			"MarkdownPreviewStop",
-		},
-		ft = { "markdown" },
-		build = function()
-			vim.fn["mkdp#util#install"]()
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		build = "cd app && yarn install",
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
 		end,
+		ft = { "markdown" },
+	},
+	{
+		"jubnzv/mdeval.nvim",
+		ft = { "markdown" },
+		config = function()
+			require("config.mdeval")
+		end,
+	},
+	{
+		"AckslD/nvim-FeMaco.lua",
+		config = function()
+			require("config.femaco")
+		end,
+	},
+	{
+		"plasticboy/vim-markdown",
+		dependencies = {
+			{
+				"godlygeek/tabular",
+			},
+		},
+		config = function()
+			require("config.vim-markdown")
+		end,
+		ft = { "markdown" },
+	},
+	{
+		"HakonHarnes/img-clip.nvim",
+		event = "VeryLazy",
+		opts = {},
+		keys = {
+			{ "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+		},
 	},
 	---------------------------------------------------------------------------
 	{ "cespare/vim-toml", ft = { "toml" }, branch = "main" }, -- showing keybindings
@@ -282,6 +315,13 @@ local plugin_specs = {
 		"ahmedkhalf/project.nvim",
 		config = function()
 			require("config.project")
+		end,
+	},
+
+	{
+		"numToStr/FTerm.nvim",
+		config = function()
+			require("config.floating-term")
 		end,
 	},
 }
